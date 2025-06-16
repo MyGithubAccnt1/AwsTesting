@@ -1,0 +1,28 @@
+{
+  "id": 1024,
+  "name": "Luna",
+  "species": "Cat",
+  "age": 3,
+  "vaccinated": true,
+  "owner": {
+    "firstName": "Alex",
+    "lastName": "Rivera",
+    "contact": {
+      "email": "alex.rivera@example.com",
+      "phone": "+639171234567"
+    }
+  },
+  "favoriteFoods": ["tuna", "chicken", "salmon"],
+  "medicalHistory": [
+    {
+      "date": "2024-05-10",
+      "procedure": "Vaccination",
+      "notes": "Rabies vaccine administered."
+    },
+    {
+      "date": "2023-11-22",
+      "procedure": "Check-up",
+      "notes": "Healthy, no issues."
+    }
+  ]
+}
