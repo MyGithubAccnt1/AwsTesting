@@ -3,7 +3,7 @@
 require 'vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
-$dotenv->required(['AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY'])->notEmpty();
+$dotenv->required(['AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY', 'AWS_REGION', 'AWS_BUCKET_NAME'])->notEmpty();
 
 use Aws\S3\S3Client;
 
@@ -34,7 +34,7 @@ $s3Key = 'Sync-DIR/TRIPKO/Pending/' . basename($originalName);
 // ✅ 4. Setup S3 client
 $s3Client = new S3Client([
     'version' => 'latest',
-    'region'  => 'ap-southeast-2',
+    'region'  => $_ENV['AWS_REGION'],
     'credentials' => [
         'key'    => $_ENV['AWS_ACCESS_KEY_ID'],
         'secret' => $_ENV['AWS_SECRET_ACCESS_KEY']
@@ -44,7 +44,7 @@ $s3Client = new S3Client([
 try {
     // ✅ 5. Upload file directly using putObject
     $result = $s3Client->putObject([
-        'Bucket' => 'samplebucketko',
+        'Bucket' => $_ENV['AWS_BUCKET_NAME'],
         'Key'    => $s3Key,
         'Body'   => fopen($tmpFile, 'r'),
         'ContentType' => 'application/json',
