@@ -54,7 +54,6 @@ try {
     echo json_encode([
         'message' => '✅ Upload successful',
         's3_path' => $s3Key,
-        // 'url' => $result['ObjectURL']
     ]);
 
 } catch (Exception $e) {
